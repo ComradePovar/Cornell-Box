@@ -14,7 +14,7 @@ namespace Cornell_Box
         public int ProjectionMatrixID { get; private set; }
         public int ModelViewMatrixID { get; private set; }
         public int CameraPositionID { get; private set; }
-        public int LightDirectionID { get; private set; }
+        public int LightPositionID { get; private set; }
         public int AmbientIntensityID { get; private set; }
         public int ConstantAttenuationID { get; private set; }
         public int LinearAttenuationID { get; private set; }
@@ -47,7 +47,7 @@ namespace Cornell_Box
         {
             ProjectionMatrixID = GL.GetUniformLocation(ID, "projectionMatrix");
             ModelViewMatrixID = GL.GetUniformLocation(ID, "modelViewMatrix");
-            LightDirectionID = GL.GetUniformLocation(ID, "lightPosition");
+            LightPositionID = GL.GetUniformLocation(ID, "lightPosition");
             AmbientIntensityID = GL.GetUniformLocation(ID, "ambientIntensity");
             DiffuseIntensityID = GL.GetUniformLocation(ID, "diffuseIntensity");
             ConstantAttenuationID = GL.GetUniformLocation(ID, "constantAttenuation");
@@ -74,3 +74,4 @@ namespace Cornell_Box
         }
     }
 }
+ 

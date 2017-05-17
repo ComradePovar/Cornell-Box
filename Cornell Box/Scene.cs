@@ -18,8 +18,8 @@ namespace Cornell_Box
         private Primitive backWall;
         private Primitive rightWall;
         private Primitive leftWall;
-        private Primitive shortBlock;
         private Primitive pyramid;
+        private Primitive tallBlock;
         private Primitive ceiling;
         private RoomShader shader;
 
@@ -27,7 +27,7 @@ namespace Cornell_Box
         {
             shader = new RoomShader(vertexShaderPath, fragmentShaderPath);
             Camera = new Camera(new Vector3(278, 273, -800), new Vector3(278, 273, -799), Vector3.UnitY);
-            light = new PointLight(new Vector3(278.0f, 374.4f, 279.5f), 182f, 0.02f, 0.4f, 0.7f, 0.05f, 0.003f, 0.000012f);
+            light = new PointLight(new Vector3(268.0f, 284.4f, 279.6f), 32f, 0.5f, 0.4f, 0.6f, 0.8f, 0.0025f, 5E-06f);
             InitPrimitives();
         }
 
@@ -61,10 +61,6 @@ namespace Cornell_Box
             };
             Vector3[] normals =
             {
-                //GetNormal(vertices[1] - vertices[0], vertices[2] - vertices[1]),
-                //GetNormal(vertices[1] - vertices[0], vertices[2] - vertices[1]),
-                //GetNormal(vertices[1] - vertices[0], vertices[2] - vertices[1]),
-                //GetNormal(vertices[1] - vertices[0], vertices[2] - vertices[1]),
                 new Vector3(-1, 1, 1),
                 new Vector3(1, 1, 1),
                 new Vector3(1, 1, -1),
@@ -91,10 +87,6 @@ namespace Cornell_Box
             };
             normals = new Vector3[]
             {
-                //GetNormal(vertices[1] - vertices[0], vertices[2] - vertices[1]),
-                //GetNormal(vertices[1] - vertices[0], vertices[2] - vertices[1]),
-                //GetNormal(vertices[1] - vertices[0], vertices[2] - vertices[1]),
-                //GetNormal(vertices[1] - vertices[0], vertices[2] - vertices[1])
                 new Vector3(-1, 1, -1),
                 new Vector3(1, 1, -1),
                 new Vector3(1, -1, -1),
@@ -125,10 +117,6 @@ namespace Cornell_Box
                 new Vector3(1, 1, 1),
                 new Vector3(1, -1, 1),
                 new Vector3(1, -1, -1)
-                //GetNormal(vertices[1] - vertices[0], vertices[2] - vertices[1]),
-                //GetNormal(vertices[1] - vertices[0], vertices[2] - vertices[1]),
-                //GetNormal(vertices[1] - vertices[0], vertices[2] - vertices[1]),
-                //GetNormal(vertices[1] - vertices[0], vertices[2] - vertices[1])
             };
             rightWall.BindVertices(vertices);
             rightWall.BindColors(colors);
@@ -151,10 +139,6 @@ namespace Cornell_Box
             };
             normals = new Vector3[]
             {
-                //GetNormal(vertices[1] - vertices[0], vertices[2] - vertices[1]),
-                //GetNormal(vertices[1] - vertices[0], vertices[2] - vertices[1]),
-                //GetNormal(vertices[1] - vertices[0], vertices[2] - vertices[1]),
-                //GetNormal(vertices[1] - vertices[0], vertices[2] - vertices[1])
                 new Vector3(-1, 1, 0),
                 new Vector3(-1, 1, -1),
                 new Vector3(-1, -1, -1),
@@ -181,10 +165,6 @@ namespace Cornell_Box
             };
             normals = new Vector3[]
             {
-                //GetNormal(vertices[1] - vertices[0], vertices[2] - vertices[1]),
-                //GetNormal(vertices[1] - vertices[0], vertices[2] - vertices[1]),
-                //GetNormal(vertices[1] - vertices[0], vertices[2] - vertices[1]),
-                //GetNormal(vertices[1] - vertices[0], vertices[2] - vertices[1])
                 new Vector3(-1, -1, 1),
                 new Vector3(-1, -1, -1),
                 new Vector3(1, -1, -1),
@@ -194,33 +174,92 @@ namespace Cornell_Box
             ceiling.BindColors(colors);
             ceiling.BindNormals(normals);
 
-            shortBlock = new Primitive();
+            pyramid = new Primitive();
             vertices = new Vector3[]
             {
-                new Vector3(130.0f, 165.0f, 65.0f),
-                new Vector3(82.0f, 165.0f, 225.0f),
-                new Vector3(240.0f, 165.0f, 272.0f),
-                new Vector3(290.0f, 165.0f, 114.0f),
-
-                new Vector3(290.0f, 0.0f, 114.0f),
-                new Vector3(290.0f, 165.0f, 114.0f),
-                new Vector3(240.0f, 165.0f, 272.0f),
+                new Vector3(185.0f, 165.0f, 169.0f),
                 new Vector3(240.0f, 0.0f, 272.0f),
-
-                new Vector3(130.0f, 0.0f, 65.0f),
-                new Vector3(130.0f, 165.0f, 65.0f),
-                new Vector3(290.0f, 165.0f, 114.0f),
-                new Vector3(290.0f, 0.0f, 114.0f),
-
                 new Vector3(82.0f, 0.0f, 225.0f),
-                new Vector3(82.0f, 165.0f, 225.0f),
-                new Vector3(130.0f, 165.0f, 65.0f),
+
+                new Vector3(185.0f, 165.0f, 169.0f),
+                new Vector3(82.0f, 0.0f, 225.0f),
                 new Vector3(130.0f, 0.0f, 65.0f),
 
-                new Vector3(240.0f, 0.0f, 272.0f),
-                new Vector3(240.0f, 165.0f, 272.0f),
-                new Vector3(82.0f, 165.0f, 225.0f),
-                new Vector3(82.0f, 0.0f, 225.0f),
+                new Vector3(185.0f, 165.0f, 169.0f),
+                new Vector3(130.0f, 0.0f, 65.0f),
+                new Vector3(290.0f, 0.0f, 114.0f),
+
+                new Vector3(185.0f, 165.0f, 169.0f),
+                new Vector3(290.0f, 0.0f, 114.0f),
+                new Vector3(240.0f, 0.0f, 272.0f)
+            };
+            colors = new Vector3[]
+            {
+                creamColor,
+                creamColor,
+                creamColor,
+
+                creamColor,
+                creamColor,
+                creamColor,
+
+                creamColor,
+                creamColor,
+                creamColor,
+
+                creamColor,
+                creamColor,
+                creamColor
+            };
+            normals = new Vector3[]
+            {
+                GetNormal(vertices[0] - vertices[1], vertices[2] - vertices[0]),
+                GetNormal(vertices[0] - vertices[1], vertices[2] - vertices[0]),
+                GetNormal(vertices[0] - vertices[1], vertices[2] - vertices[0]),
+
+                GetNormal(vertices[3] - vertices[4], vertices[5] - vertices[3]),
+                GetNormal(vertices[3] - vertices[4], vertices[5] - vertices[3]),
+                GetNormal(vertices[3] - vertices[4], vertices[5] - vertices[3]),
+
+                GetNormal(vertices[6] - vertices[7], vertices[8] - vertices[6]),
+                GetNormal(vertices[6] - vertices[7], vertices[8] - vertices[6]),
+                GetNormal(vertices[6] - vertices[7], vertices[8] - vertices[6]),
+
+                GetNormal(vertices[9] - vertices[10], vertices[11] - vertices[9]),
+                GetNormal(vertices[9] - vertices[10], vertices[11] - vertices[9]),
+                GetNormal(vertices[9] - vertices[10], vertices[11] - vertices[9])
+            };
+            pyramid.BindVertices(vertices);
+            pyramid.BindColors(colors);
+            pyramid.BindNormals(normals);
+
+            tallBlock = new Primitive();
+            vertices = new Vector3[]
+            {
+                new Vector3(423.0f, 330.0f, 247.0f),
+                new Vector3(265.0f, 330.0f, 296.0f),
+                new Vector3(314.0f, 330.0f, 456.0f),
+                new Vector3(472.0f, 330.0f, 406.0f),
+                
+                new Vector3(423.0f, 0.0f, 247.0f),
+                new Vector3(423.0f, 330.0f, 247.0f),
+                new Vector3(472.0f, 330.0f, 406.0f),
+                new Vector3(472.0f, 0.0f, 406.0f),
+
+                new Vector3(472.0f, 0.0f, 406.0f),
+                new Vector3(472.0f, 330.0f, 406.0f),
+                new Vector3(314.0f, 330.0f, 456.0f),
+                new Vector3(314.0f, 0.0f, 456.0f),
+                
+                new Vector3(314.0f, 0.0f, 456.0f),
+                new Vector3(314.0f, 330.0f, 456.0f),
+                new Vector3(265.0f, 330.0f, 296.0f),
+                new Vector3(265.0f, 0.0f, 296.0f),
+
+                new Vector3(265.0f, 0.0f, 296.0f),
+                new Vector3(265.0f, 330.0f, 296.0f),
+                new Vector3(423.0f, 330.0f, 247.0f),
+                new Vector3(423.0f, 0.0f, 247.0f)
             };
             colors = new Vector3[]
             {
@@ -277,81 +316,9 @@ namespace Cornell_Box
                 GetNormal(vertices[17] - vertices[16], vertices[18] - vertices[17]),
                 GetNormal(vertices[17] - vertices[16], vertices[18] - vertices[17])
             };
-            normals[0] = normals[5] = normals[18] = (normals[0] + normals[5] + normals[18]).Normalized();
-            normals[1] = normals[14] = normals[17] = (normals[1] + normals[14] + normals[17]).Normalized();
-            normals[2] = normals[10] = normals[13] = (normals[2] + normals[10] + normals[13]).Normalized();
-            normals[3] = normals[6] = normals[9] = (normals[3] + normals[6] + normals[9]).Normalized();
-            normals[4] = normals[19] = (normals[4] + normals[19]).Normalized();
-            normals[7] = normals[8] = (normals[7] + normals[8]).Normalized();
-            normals[11] = normals[12] = (normals[11] + normals[12]).Normalized();
-            normals[15] = normals[16] = (normals[15] + normals[16]).Normalized();
-            shortBlock.BindVertices(vertices);
-            shortBlock.BindColors(colors);
-            shortBlock.BindNormals(normals);
-
-            pyramid = new Primitive();
-            vertices = new Vector3[]
-            {
-                new Vector3(314.0f, 0.0f, 456.0f),
-                new Vector3(368.5f, 330.0f, 351.25f),
-                new Vector3(265.0f, 0.0f, 296.0f),
-                
-                new Vector3(265.0f, 0.0f, 296.0f),
-                new Vector3(368.5f, 330.0f, 351.25f),
-                new Vector3(423.0f, 0.0f, 247.0f),
-
-                new Vector3(423.0f, 0.0f, 247.0f),
-                new Vector3(368.5f, 330.0f, 351.25f),
-                new Vector3(472.0f, 0.0f, 406.0f),
-                
-                new Vector3(472.0f, 0.0f, 406.0f),
-                new Vector3(368.5f, 330.0f, 351.25f),
-                new Vector3(314.0f, 0.0f, 456.0f),
-            };
-            colors = new Vector3[]
-            {
-                creamColor,
-                creamColor,
-                creamColor,
-               
-                creamColor,
-                creamColor,
-                creamColor,
-
-                creamColor,
-                creamColor,
-                creamColor,
-                
-                creamColor,
-                creamColor,
-                creamColor
-            };
-            normals = new Vector3[]
-            {
-                GetNormal(vertices[1] - vertices[0], vertices[2] - vertices[1]),
-                GetNormal(vertices[1] - vertices[0], vertices[2] - vertices[1]),
-                GetNormal(vertices[1] - vertices[0], vertices[2] - vertices[1]),
-
-                GetNormal(vertices[4] - vertices[3], vertices[5] - vertices[4]),
-                GetNormal(vertices[4] - vertices[3], vertices[5] - vertices[4]),
-                GetNormal(vertices[4] - vertices[3], vertices[5] - vertices[4]),
-
-                GetNormal(vertices[7] - vertices[6], vertices[8] - vertices[7]),
-                GetNormal(vertices[7] - vertices[6], vertices[8] - vertices[7]),
-                GetNormal(vertices[7] - vertices[6], vertices[8] - vertices[7]),
-
-                GetNormal(vertices[10] - vertices[9], vertices[11] - vertices[10]),
-                GetNormal(vertices[10] - vertices[9], vertices[11] - vertices[10]),
-                GetNormal(vertices[10] - vertices[9], vertices[11] - vertices[10])
-            };
-            normals[0] = normals[11] = (normals[0] + normals[11]).Normalized();
-            normals[2] = normals[3] = (normals[2] + normals[3]).Normalized();
-            normals[5] = normals[6] = (normals[5] + normals[6]).Normalized();
-            normals[7] = normals[8] = (normals[7] + normals[8]).Normalized();
-            normals[1] = normals[4] = normals[7] = normals[10] = (normals[1] + normals[4] + normals[7] + normals[10]).Normalized();
-            pyramid.BindVertices(vertices);
-            pyramid.BindColors(colors);
-            pyramid.BindNormals(normals);
+            tallBlock.BindVertices(vertices);
+            tallBlock.BindColors(colors);
+            tallBlock.BindNormals(normals);
 
             lightSource = new Primitive();
             vertices = new Vector3[]
@@ -383,15 +350,13 @@ namespace Cornell_Box
         public void Render()
         {
             shader.Start();
-            GL.Enable(EnableCap.CullFace);
-            GL.PolygonMode(MaterialFace.Back, PolygonMode.Fill);
 
             GL.UniformMatrix4(shader.ProjectionMatrixID, false, ref Camera.ProjectionMatrix);
             GL.UniformMatrix4(shader.ModelViewMatrixID, false, ref Camera.ModelViewMatrix);
             GL.Uniform3(shader.CameraPositionID, ref Camera.Eye);
             GL.Uniform1(shader.AmbientIntensityID, light.AmbientIntensity);
             GL.Uniform1(shader.DiffuseIntensityID, light.DiffuseIntensity);
-            GL.Uniform3(shader.LightDirectionID, ref light.Position);
+            GL.Uniform3(shader.LightPositionID, ref light.Position);
             GL.Uniform1(shader.ConstantAttenuationID, light.ConstantAttenuation);
             GL.Uniform1(shader.LinearAttenuationID, light.LinearAttenuation);
             GL.Uniform1(shader.ExponentialAttenuationID, light.ExponentialAttenuation);
@@ -473,21 +438,6 @@ namespace Cornell_Box
 
             GL.DrawArrays(PrimitiveType.Quads, 0, 4);
 
-            GL.BindVertexArray(shortBlock.VaoID);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, shortBlock.VertexBufferID);
-            GL.EnableVertexAttribArray(0);
-            GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 0, 0);
-
-            GL.BindBuffer(BufferTarget.ArrayBuffer, shortBlock.ColorBufferID);
-            GL.EnableVertexAttribArray(1);
-            GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, 0, 0);
-
-            GL.BindBuffer(BufferTarget.ArrayBuffer, shortBlock.NormalBufferID);
-            GL.EnableVertexAttribArray(2);
-            GL.VertexAttribPointer(2, 3, VertexAttribPointerType.Float, false, 0, 0);
-
-            GL.DrawArrays(PrimitiveType.Quads, 0, 20);
-
             GL.BindVertexArray(pyramid.VaoID);
             GL.BindBuffer(BufferTarget.ArrayBuffer, pyramid.VertexBufferID);
             GL.EnableVertexAttribArray(0);
@@ -502,6 +452,21 @@ namespace Cornell_Box
             GL.VertexAttribPointer(2, 3, VertexAttribPointerType.Float, false, 0, 0);
 
             GL.DrawArrays(PrimitiveType.Triangles, 0, 12);
+
+            GL.BindVertexArray(tallBlock.VaoID);
+            GL.BindBuffer(BufferTarget.ArrayBuffer, tallBlock.VertexBufferID);
+            GL.EnableVertexAttribArray(0);
+            GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 0, 0);
+
+            GL.BindBuffer(BufferTarget.ArrayBuffer, tallBlock.ColorBufferID);
+            GL.EnableVertexAttribArray(1);
+            GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, 0, 0);
+
+            GL.BindBuffer(BufferTarget.ArrayBuffer, tallBlock.NormalBufferID);
+            GL.EnableVertexAttribArray(2);
+            GL.VertexAttribPointer(2, 3, VertexAttribPointerType.Float, false, 0, 0);
+
+            GL.DrawArrays(PrimitiveType.Quads, 0, 20);
 
             GL.BindVertexArray(lightSource.VaoID);
             GL.BindBuffer(BufferTarget.ArrayBuffer, lightSource.VertexBufferID);
