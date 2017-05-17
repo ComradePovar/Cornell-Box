@@ -15,28 +15,38 @@ in vec3 normal;
 in vec3 worldPos;
 
 out vec4 outputColor;
-
-vec4 getSpecularLightingColor(vec3 vertexToLight);
-vec4 getDiffuseLightingColor(vec3 vertexToLight, float dist);
+vec3 calcDirLight();
 
 void main(){
-	float dist = length(lightPosition - worldPos);
-	vec3 vertexToLight = normalize(lightPosition - worldPos);
-	
-	outputColor = vec4(color, 1.0)*(getDiffuseLightingColor(vertexToLight, dist) + ambientIntensity*vec4(1.0, 1.0, 1.0, 1.0) + getSpecularLightingColor(vertexToLight));
-}
-vec4 getSpecularLightingColor(vec3 vertexToLight){
-	vec3 cameraDirection = normalize(cameraPosition - worldPos);
-	vec3 reflectionVector = reflect(-vertexToLight, normalize(normal));
-	float specularFactor = dot(cameraDirection, reflectionVector);
-	if (specularFactor > 0)
-		return vec4(1.0, 1.0, 1.0, 1.0) * pow(specularFactor, specularPower) * specularIntensity;
-	else
-		return vec4(0.0, 0.0, 0.0, 0.0);
+	vec3 result = calcDirLight();
+	outputColor = vec4( result*color, 1.0);
 }
 
-vec4 getDiffuseLightingColor(vec3 vertexToLight, float dist){
-	float attitude = constantAttenuation + linearAttenuation * dist + exponentialAttenuation * dist * dist;
-	float diffuseFactor = max(0.0, dot(normalize(normal), vertexToLight));
-	return vec4(1.0, 1.0, 1.0, 1.0) * (diffuseFactor) * diffuseIntensity / attitude;
+vec3 calcDirLight(){
+	vec3 result = vec3(1.0, 1.0, 1.0);
+	vec3 whiteColor = vec3(1.0, 1.0, 1.0);
+	vec3 ambient = ambientIntensity * whiteColor;
+	result = ambient;
+	
+	vec3 norm = normalize(normal);
+	vec3 lightDir = normalize(lightPosition - worldPos);
+	float diffInfluence = max(dot(norm, lightDir), 0.0);
+	vec3 diffuse = diffInfluence * whiteColor;
+	result += diffuse;
+	
+	vec3 viewDir = normalize(cameraPosition - worldPos);
+	vec3 reflectDir = reflect(-lightDir, norm);
+	
+	float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32);
+	vec3 specular = 0.5 * spec * whiteColor;
+	result += specular;
+	
+	float distance = length(lightPosition - worldPos);
+	float attenuation = 1.0f / (constantAttenuation + linearAttenuation * distance + exponentialAttenuation * distance * distance);
+	
+	ambient *= attenuation;
+	diffuse *= attenuation;
+	specular *= attenuation;
+	
+	return (ambient + diffuse + specular);
 }
