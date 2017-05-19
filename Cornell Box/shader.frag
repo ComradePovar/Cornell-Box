@@ -1,4 +1,4 @@
-#version 450
+#version 330 core
 
 uniform vec3 lightPosition;
 uniform float ambientIntensity;
@@ -23,23 +23,19 @@ void main(){
 }
 
 vec3 calcDirLight(){
-	vec3 result = vec3(1.0, 1.0, 1.0);
 	vec3 whiteColor = vec3(1.0, 1.0, 1.0);
 	vec3 ambient = ambientIntensity * whiteColor;
-	result = ambient;
-	
+
 	vec3 norm = normalize(normal);
 	vec3 lightDir = normalize(lightPosition - worldPos);
 	float diffInfluence = max(dot(norm, lightDir), 0.0);
 	vec3 diffuse = diffInfluence * whiteColor;
-	result += diffuse;
 	
 	vec3 viewDir = normalize(cameraPosition - worldPos);
 	vec3 reflectDir = reflect(-lightDir, norm);
 	
 	float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32);
 	vec3 specular = 0.5 * spec * whiteColor;
-	result += specular;
 	
 	float distance = length(lightPosition - worldPos);
 	float attenuation = 1.0f / (constantAttenuation + linearAttenuation * distance + exponentialAttenuation * distance * distance);

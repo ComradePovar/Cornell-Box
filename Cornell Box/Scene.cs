@@ -195,21 +195,21 @@ namespace Cornell_Box
             };
             colors = new Vector3[]
             {
-                creamColor,
-                creamColor,
-                creamColor,
+                new Vector3(0.0f, 1.0f, 1.0f),
+                new Vector3(0.0f, 1.0f, 1.0f),
+                new Vector3(0.0f, 1.0f, 1.0f),
 
-                creamColor,
-                creamColor,
-                creamColor,
+                new Vector3(0.0f, 1.0f, 1.0f),
+                new Vector3(0.0f, 1.0f, 1.0f),
+                new Vector3(0.0f, 1.0f, 1.0f),
 
-                creamColor,
-                creamColor,
-                creamColor,
+                new Vector3(0.0f, 1.0f, 1.0f),
+                new Vector3(0.0f, 1.0f, 1.0f),
+                new Vector3(0.0f, 1.0f, 1.0f),
 
-                creamColor,
-                creamColor,
-                creamColor
+                new Vector3(0.0f, 1.0f, 1.0f),
+                new Vector3(0.0f, 1.0f, 1.0f),
+                new Vector3(0.0f, 1.0f, 1.0f)
             };
             normals = new Vector3[]
             {
@@ -345,6 +345,7 @@ namespace Cornell_Box
             lightSource.BindVertices(vertices);
             lightSource.BindColors(colors);
             lightSource.BindNormals(normals);
+
         }
 
         public void Render()
@@ -364,123 +365,27 @@ namespace Cornell_Box
             GL.Uniform1(shader.SpecularPowerID, light.SpecularPower);
 
             GL.BindVertexArray(floor.VaoID);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, floor.VertexBufferID);
-            GL.EnableVertexAttribArray(0);
-            GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 0, 0);
-
-            GL.BindBuffer(BufferTarget.ArrayBuffer, floor.ColorBufferID);
-            GL.EnableVertexAttribArray(1);
-            GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, 0, 0);
-
-            GL.BindBuffer(BufferTarget.ArrayBuffer, floor.NormalBufferID);
-            GL.EnableVertexAttribArray(2);
-            GL.VertexAttribPointer(2, 3, VertexAttribPointerType.Float, false, 0, 0);
-
             GL.DrawArrays(PrimitiveType.Quads, 0, 4);
 
             GL.BindVertexArray(backWall.VaoID);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, backWall.VertexBufferID);
-            GL.EnableVertexAttribArray(0);
-            GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 0, 0);
-
-            GL.BindBuffer(BufferTarget.ArrayBuffer, backWall.ColorBufferID);
-            GL.EnableVertexAttribArray(1);
-            GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, 0, 0);
-
-            GL.BindBuffer(BufferTarget.ArrayBuffer, backWall.NormalBufferID);
-            GL.EnableVertexAttribArray(2);
-            GL.VertexAttribPointer(2, 3, VertexAttribPointerType.Float, false, 0, 0);
-
             GL.DrawArrays(PrimitiveType.Quads, 0, 4);
 
             GL.BindVertexArray(rightWall.VaoID);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, rightWall.VertexBufferID);
-            GL.EnableVertexAttribArray(0);
-            GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 0, 0);
-
-            GL.BindBuffer(BufferTarget.ArrayBuffer, rightWall.ColorBufferID);
-            GL.EnableVertexAttribArray(1);
-            GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, 0, 0);
-
-            GL.BindBuffer(BufferTarget.ArrayBuffer, rightWall.NormalBufferID);
-            GL.EnableVertexAttribArray(2);
-            GL.VertexAttribPointer(2, 3, VertexAttribPointerType.Float, false, 0, 0);
-
             GL.DrawArrays(PrimitiveType.Quads, 0, 4);
 
             GL.BindVertexArray(leftWall.VaoID);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, leftWall.VertexBufferID);
-            GL.EnableVertexAttribArray(0);
-            GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 0, 0);
-
-            GL.BindBuffer(BufferTarget.ArrayBuffer, leftWall.ColorBufferID);
-            GL.EnableVertexAttribArray(1);
-            GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, 0, 0);
-
-            GL.BindBuffer(BufferTarget.ArrayBuffer, leftWall.NormalBufferID);
-            GL.EnableVertexAttribArray(2);
-            GL.VertexAttribPointer(2, 3, VertexAttribPointerType.Float, false, 0, 0);
-
             GL.DrawArrays(PrimitiveType.Quads, 0, 4);
 
             GL.BindVertexArray(ceiling.VaoID);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, ceiling.VertexBufferID);
-            GL.EnableVertexAttribArray(0);
-            GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 0, 0);
-
-            GL.BindBuffer(BufferTarget.ArrayBuffer, ceiling.ColorBufferID);
-            GL.EnableVertexAttribArray(1);
-            GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, 0, 0);
-
-            GL.BindBuffer(BufferTarget.ArrayBuffer, ceiling.NormalBufferID);
-            GL.EnableVertexAttribArray(2);
-            GL.VertexAttribPointer(2, 3, VertexAttribPointerType.Float, false, 0, 0);
-
             GL.DrawArrays(PrimitiveType.Quads, 0, 4);
 
             GL.BindVertexArray(pyramid.VaoID);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, pyramid.VertexBufferID);
-            GL.EnableVertexAttribArray(0);
-            GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 0, 0);
-
-            GL.BindBuffer(BufferTarget.ArrayBuffer, pyramid.ColorBufferID);
-            GL.EnableVertexAttribArray(1);
-            GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, 0, 0);
-
-            GL.BindBuffer(BufferTarget.ArrayBuffer, pyramid.NormalBufferID);
-            GL.EnableVertexAttribArray(2);
-            GL.VertexAttribPointer(2, 3, VertexAttribPointerType.Float, false, 0, 0);
-
             GL.DrawArrays(PrimitiveType.Triangles, 0, 12);
 
             GL.BindVertexArray(tallBlock.VaoID);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, tallBlock.VertexBufferID);
-            GL.EnableVertexAttribArray(0);
-            GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 0, 0);
-
-            GL.BindBuffer(BufferTarget.ArrayBuffer, tallBlock.ColorBufferID);
-            GL.EnableVertexAttribArray(1);
-            GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, 0, 0);
-
-            GL.BindBuffer(BufferTarget.ArrayBuffer, tallBlock.NormalBufferID);
-            GL.EnableVertexAttribArray(2);
-            GL.VertexAttribPointer(2, 3, VertexAttribPointerType.Float, false, 0, 0);
-
             GL.DrawArrays(PrimitiveType.Quads, 0, 20);
 
             GL.BindVertexArray(lightSource.VaoID);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, lightSource.VertexBufferID);
-            GL.EnableVertexAttribArray(0);
-            GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 0, 0);
-
-            GL.BindBuffer(BufferTarget.ArrayBuffer, lightSource.ColorBufferID);
-            GL.EnableVertexAttribArray(1);
-            GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, 0, 0);
-
-            GL.BindBuffer(BufferTarget.ArrayBuffer, lightSource.NormalBufferID);
-            GL.EnableVertexAttribArray(2);
-            GL.VertexAttribPointer(2, 3, VertexAttribPointerType.Float, false, 0, 0);
-
             GL.DrawArrays(PrimitiveType.Quads, 0, 4);
 
             shader.Stop();

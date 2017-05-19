@@ -19,6 +19,7 @@ namespace Cornell_Box
         public Primitive()
         {
             VaoID = GL.GenVertexArray();
+            GL.BindVertexArray(VaoID);
         }
 
         public void BindVertices(Vector3[] vertices)
@@ -26,15 +27,8 @@ namespace Cornell_Box
             VertexBufferID = GL.GenBuffer();
             GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBufferID);
             GL.BufferData(BufferTarget.ArrayBuffer, (IntPtr)(vertices.Length * Vector3.SizeInBytes), vertices, BufferUsageHint.StaticDraw);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
-        }
-
-        public void BindTexCoord(Vector2[] texCoords)
-        {
-            TexCoordBufferID = GL.GenBuffer();
-            GL.BindBuffer(BufferTarget.ArrayBuffer, TexCoordBufferID);
-            GL.BufferData(BufferTarget.ArrayBuffer, texCoords.Length * Vector2.SizeInBytes, texCoords, BufferUsageHint.StaticDraw);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            GL.EnableVertexAttribArray(0);
+            GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 0, 0);
         }
 
         public void BindNormals(Vector3[] normals)
@@ -42,7 +36,8 @@ namespace Cornell_Box
             NormalBufferID = GL.GenBuffer();
             GL.BindBuffer(BufferTarget.ArrayBuffer, NormalBufferID);
             GL.BufferData(BufferTarget.ArrayBuffer, normals.Length * Vector3.SizeInBytes, normals, BufferUsageHint.StaticDraw);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            GL.EnableVertexAttribArray(2);
+            GL.VertexAttribPointer(2, 3, VertexAttribPointerType.Float, false, 0, 0);
         }
 
         public void BindColors(Vector3[] colors)
@@ -50,7 +45,8 @@ namespace Cornell_Box
             ColorBufferID = GL.GenBuffer();
             GL.BindBuffer(BufferTarget.ArrayBuffer, ColorBufferID);
             GL.BufferData(BufferTarget.ArrayBuffer, (IntPtr)(colors.Length * Vector3.SizeInBytes), colors, BufferUsageHint.StaticDraw);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            GL.EnableVertexAttribArray(1);
+            GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, 0, 0);
         }
     }
 }

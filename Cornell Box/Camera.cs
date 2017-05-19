@@ -29,7 +29,7 @@ namespace Cornell_Box
 
         public void Resize(int width, int height)
         {
-            ProjectionMatrix = Matrix4.CreatePerspectiveFieldOfView(MathHelper.PiOver4, width / (float)height, 1, 10000);
+            ProjectionMatrix = Matrix4.CreatePerspectiveFieldOfView(MathHelper.PiOver4, width / (float)height, 10, 10000);
             GL.MatrixMode(MatrixMode.Projection);
             GL.LoadMatrix(ref ProjectionMatrix);
         }
